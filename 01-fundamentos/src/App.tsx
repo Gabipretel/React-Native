@@ -4,7 +4,10 @@
 // import Contador from './components/Contador'
 // import ContadorCustomHook from './components/ContadorCustomHook'
 // import Login from './components/Login'
-import Usuarios from './components/Usuarios'
+// import Usuarios from './components/Usuarios'
+// import UsuariosCustomHook from './components/UsuariosCustomHook'
+// import Formularios from './components/Formularios'
+import FormulariosCustomHook from './components/FormulariosCustomHook'
 const App = () => {
   return (
     
@@ -17,7 +20,11 @@ const App = () => {
       {/* <Contador/> */}
       {/* <ContadorCustomHook/> */}
       {/* <Login/> */}
-      <Usuarios/>
+      {/* <Usuarios/> */}
+      {/* <UsuariosCustomHook/> */}
+      {/* <Formularios/> */}
+      <FormulariosCustomHook/>
+      
     </div>
   )
 }

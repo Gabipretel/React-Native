@@ -1,30 +1,8 @@
-import { useEffect, useState, useRef } from "react";
-import { reqResApi } from "../api/reqResApi";
-import { ReqResLista, Usuario } from "../interface/reqRes.interface";
+import {useUsuarios} from '../hooks/useUsuarios'
+import {Usuario} from '../interface/reqRes.interface'
 
-const Usuarios = () => {
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
-  let paginaRef = useRef(0);
-
-  useEffect(() => {
-    cargarUsuarios();
-  }, []);
-
-  const cargarUsuarios = async () => {
-    const resp = await reqResApi.get<ReqResLista>("/users", {
-      params: {
-        page: paginaRef.current 
-      },
-    });
-    
-    if(resp.data.data.length > 0){
-        setUsuarios(resp.data.data)
-        paginaRef.current++
-       
-    }else{
-        alert('No hay mas registros.')
-    }
-  };
+const UsuariosCustomHook = () => {
+  const {usuarios,paginaAnterior,paginaSiguiente}= useUsuarios()
 
   const renderItemUsuario = (usuario: Usuario) => {
     const { first_name, last_name, avatar, email, id } = usuario;
@@ -59,11 +37,14 @@ const Usuarios = () => {
         </thead>
         <tbody>{usuarios.map((usuario) => renderItemUsuario(usuario))}</tbody>
       </table>
-      <button className="btn btn-outline-primary" onChange={cargarUsuarios}>
+      <button className="btn btn-outline-primary m-3" onChange={paginaAnterior}>
+        Anteriores
+      </button>
+      <button className="btn btn-outline-primary m-3" onChange={paginaSiguiente}>
         Siguiente
       </button>
     </>
   );
 };
 
-export default Usuarios;
+export default UsuariosCustomHook;

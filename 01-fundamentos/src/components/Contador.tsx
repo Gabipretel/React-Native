@@ -13,8 +13,8 @@ const Contador = () => {
       <h3 className="mt-5 p-3">
         Contador: <strong>{counter}</strong>
       </h3>
-      <button className="btn btn-success p-2 m-3" onClick={()=>handleCounter(1)}>+1</button>
-      <button className="btn btn-primary p-2 m-3" onClick={()=>handleCounter(-1)}>-1</button>
+      <button className="btn btn-success p-2 m-3" onChange={()=>handleCounter(1)}>+1</button>
+      <button className="btn btn-primary p-2 m-3" onChange={()=>handleCounter(-1)}>-1</button>
     </>
   );
 };

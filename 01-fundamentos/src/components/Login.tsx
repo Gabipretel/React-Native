@@ -76,14 +76,14 @@ const Login = () => {
             Autenticado como {state.userName}
           </div>
           <div className="p-4">
-            <button className="btn btn-danger m-3" onClick={()=>{logOut()}}>Logout</button>
+            <button className="btn btn-danger m-3" onChange={()=>{logOut()}}>Logout</button>
           </div>
         </>
       ) : (
         <>
           <div className="alert alert-danger">Usuario no autenticado</div>
           <div className="p-4">
-            <button className="btn btn-success m-3" onClick={()=>login()} >Login</button>
+            <button className="btn btn-success m-3" onChange={()=>login()} >Login</button>
           </div>
         </>
       )}
