@@ -320,3 +320,73 @@ Flexbox funciona de la misma manera en React Native que en CSS en la web, con al
 
 
 # Arranca Herrera en la carpeta 02-firstApp.
+
+### Para agregar estilos locales, defino una variable con sintaxis clave-valor.
+
+* * * 
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#8FD694',
+        justifyContent: 'center'
+
+    },
+    title: {
+        fontSize: 40,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        position: 'relative',
+        top: -40
+    },
+
+})
+* * *
+
+# Para agregar botones, existen 3, Touchable Highlight, TouchableOpacity,TouchableWithoutFeedBack.
+
+## Para hacer un btn flotante en ambas plataformas ios y android, debemos utilizar PlatForm para retornar una view y componente distinto adaptado a cada plataforma.
+## Pasos : Crear dos funciones que retornen JSX y con un renderizado condicional ya está(preguntar si es OS o Android) y de ahi retornar uno u otro estilizado para que se vea bien.
+
+## Ejemplo:
+
+* * * 
+const Fab = ({ title, position = 'br', onPress }: Props) => {
+
+    const ios =()=>{
+        return(
+            <TouchableOpacity 
+            activeOpacity={0.8} 
+            style={[styles.btnFab, (position === 'bl') ? styles.left : styles.right]} onPress={onPress}>
+
+            {/* <TouchableOpacity style={position === 'bl' ? styles.btnFabL : styles.btnFabR} onPress={onPress} > */}
+                <View style={styles.btn}>
+                    <Text style={styles.btnText} >{title}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
+    const android =()=>{
+        return(
+            <View style={[styles.btnFab, (position === 'bl') ? styles.left : styles.right]}>
+
+            {/* <TouchableOpacity style={position === 'bl' ? styles.btnFabL : styles.btnFabR} onPress={onPress} > */}
+    
+            <TouchableNativeFeedback  
+            onPress={onPress} 
+            background={TouchableNativeFeedback.Ripple('#bacfcb',false,30)} >
+                <View style={styles.btn}>
+                    <Text style={styles.btnText} >{title}</Text>
+                </View>
+            </TouchableNativeFeedback >
+            </View>
+        )
+    }
+
+ 
+    return (Platform.OS === 'ios') ? ios() : android()
+}
+
+export default Fab
+* * *
