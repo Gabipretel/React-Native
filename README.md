@@ -315,7 +315,9 @@ Flexbox funciona de la misma manera en React Native que en CSS en la web, con al
 
 ### Flex 
 
-### Continuar por aquí..
+### Box Model Object(height,width,padding,border,margin)
+
+### Position(absolute,relative,top,left,right,bottom)
 
 
 
@@ -390,3 +392,5 @@ const Fab = ({ title, position = 'br', onPress }: Props) => {
 
 export default Fab
 * * *
+
+
