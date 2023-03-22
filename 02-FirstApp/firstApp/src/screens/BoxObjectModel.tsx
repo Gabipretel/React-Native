@@ -5,8 +5,8 @@ const BoxObjectModel = () => {
   return (
     <View style={styles.container} >
       <Text style={styles.title}>probando styles</Text>
-      <Text style={styles.title}>probando styles</Text>
-      <Text style={styles.title}>probando styles</Text>
+      <Text style={styles.title}>probando styles2</Text>
+      <Text style={styles.title}>probando styles3</Text>
     </View>
   )
 }
@@ -24,7 +24,5 @@ const styles= StyleSheet.create({
     borderWidth:3,
     padding:20,
     margin:60,
-
-
   }
 })

@@ -318,7 +318,21 @@ Flexbox funciona de la misma manera en React Native que en CSS en la web, con al
 ### Box Model Object(height,width,padding,border,margin)
 
 ### Position(absolute,relative,top,left,right,bottom)
+Cuando se crea un componente su posición es relativa(por defecto),y el
+valor absoluto se puede establecer  
 
+### Dimensiones
+Estas varían de acuerdo al contenedor padre (view) y en función de su tamaño ancho y alto, los hijos se van a acomodar.
+Dimensions de React-Native tiene el inconveniente de no actualizar el tamaño de la pantalla(window) en tiempo real, por lo
+tanto se usa el hook llamado useWindowsDimensions el cual es un obj y se destructura tanto el ancho como el alto.
+Nota: primero hay que importarlo.
+useWindowDimensions actualiza automáticamente todos sus valores cuando cambia el tamaño de la pantalla o la escala de fuente. Puede obtener el ancho y la altura de la ventana de su aplicación así
+* * *
+import {useWindowDimensions} from 'react-native';
+
+const {height, width} = useWindowDimensions();
+
+### Viene una libreria llamada  React Native Responsive Dimensions.(NO USAR.)
 
 
 # Arranca Herrera en la carpeta 02-firstApp.
@@ -394,3 +408,4 @@ export default Fab
 * * *
 
 
+## App calculadora(manejo de hooks,useState useRef,customHooks,etc.)
