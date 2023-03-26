@@ -15,13 +15,15 @@ export const styles= StyleSheet.create({
         color:'#fff',
         fontSize:60,
         textAlign:"right",
-        marginBottom:10
+        marginBottom:10,
+        marginHorizontal:30
         
     },
     littleResult:{
         color:'rgba(255,255,255,0.5)',
         fontSize:30,
         textAlign:"right",
+        marginHorizontal:30
         
     },
     rows:{
