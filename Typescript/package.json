@@ -1,0 +1,15 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "Typescript debe transpilarse a javascript sino no puede ser leido por el navegador. Por lo tanto luego es indiferente\r si se usa muchos tipos de typescript en el código porque este no va a ocupar espacio, el transpilador(traductor)\r va a convertirlo en js para poder correrlo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}
