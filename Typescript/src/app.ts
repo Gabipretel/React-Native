@@ -59,9 +59,6 @@ const getFullName = (name: string, lastName?: string, upper: boolean = false): s
 }
 console.log(getFullName('Gabriel', 'Pretel'))
 
-
-
-
 //Parametros REST
 
 const fullResParams = (name:string,lastName:string,...rest:string[]):string=>{
@@ -69,6 +66,9 @@ return `${name }, ${lastName} ${rest.join(' ')}`
 }
 const hero = fullResParams('gabo','pretel','sanchez')
 console.log(hero)
+
+
+
 
 
  
