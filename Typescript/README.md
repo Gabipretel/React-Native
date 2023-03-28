@@ -108,6 +108,58 @@ enum Direction {
 * * *
 
 
+## Clases en el archivo src/clases y sus ejemplos.
+
+##  Falta Rever Interfaces 
+Una declaración de interfaz es otra forma de nombrar un tipo de objeto:
+
+* * *
+interface Hero{
+  name: string;
+  age?: number;
+  powers: string[];
+  getName?: () => string;
+}
+* * *
+
+La diferencia fundamental de las Interfaces y los type son que las interfaces
+pueden extenderse o expandirse, en cambio los type no.
+Se usan para definir estructuras de objetos y para las peticiones http.
+Los type se usan para definir algo que no se va a expandir.
+
+Estructuras complejas
+* * *
+
+// Estructuras Complejas.
+
+    interface Client {
+        name: string;
+        age?: number;
+        address: Address
+    }
+
+    interface Address{
+        id: number;
+        zip: number;
+        city: string;
+    }
+
+    const client: Client ={
+        name:'Gabriel',
+        age:27,
+        address:{
+            id:1,
+            zip:630,
+            city:'General Pico'
+        }
+    }
+  * * *
+### Http methods interfaces
+### Interfaces para clases en interfacesClases.ts
+* * *
+* * *
+## Falta Rever Genéricos Typescript
+
 
 
 
