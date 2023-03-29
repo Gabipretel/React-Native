@@ -409,3 +409,91 @@ export default Fab
 
 
 ## App calculadora(manejo de hooks,useState useRef,customHooks,etc.)
+
+# React Navigation React-Native
+Pasos de instalación en la web, instalar modulo e configurar archivo Java.
+Debemos envolver toda nuestra app en un Navigation Container.
+
+Existen varios tipos de navegación estaré cubriendo los del proyecto tanto
+el stack navigator(navegación por botones basicamente entre pantallas o screens) 
+y el drawer Navigator(la barra lateral de web.)
+
+### Existen 4 navegaciones :
+
+### Stack Navigation
+Pila de screens, se mantienen activas y se usa el navigation.navigate,
+el cual es un objeto el (navigation), se puede extraer mediante hooks
+o tmb por los props q tmb se envia por ahí.
+Para deshacernos de las tarjetas o screens hay varias formas:
+navigation.pop--> q destruye la  ultima pantalla en donde esta el usuario.
+navigation.popToTop---> Vuelve a la primera carta o screen principal.
+navigation.goBack---> Vuelve a la pantalla anterior.
+
+Cuando creamos un proyecto no existe un stack,sino que hay que crearlo.
+
+Envolviendo su aplicación en NavigationContainer:
+
+  Ahora, necesitamos envolver toda la aplicación en NavigationContainer. Por lo general, haría esto en su archivo de entrada, como index.js o App.js:
+
+* * *
+    import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <NavigationContainer>
+    {/* Rest of your app code */}
+    </NavigationContainer>
+  );
+}
+* * *
+
+createNativeStackNavigator es una función que devuelve un objeto que contiene 2 propiedades: Pantalla y Navegador. Ambos son componentes de React que se utilizan para configurar el navegador. El navegador debe contener elementos de pantalla como elementos secundarios para definir la configuración de las rutas.
+
+NavigationContainer es un componente que gestiona nuestro árbol de navegación y contiene el estado de navegación. Este componente debe envolver toda la estructura de los navegadores. Por lo general, renderizaríamos este componente en la raíz de nuestra aplicación, que suele ser el componente exportado desde App.js
+
+
+* * *
+
+// In App.js in a new project
+
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator> 
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+* * *
+
+
+
+
+
+
+### Drawer Navigation
+
+
+### BottomTab Navigation
+
+### MaterialTop Navigation 
+

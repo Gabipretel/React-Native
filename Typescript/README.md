@@ -160,9 +160,77 @@ Estructuras complejas
 * * *
 ## Falta Rever Genéricos Typescript
 
+Una parte importante de la ingeniería de software consiste en crear componentes que no solo tengan API coherentes y bien definidas, sino que también sean reutilizables. Los componentes que son capaces de trabajar con los datos de hoy y los datos del mañana le brindarán las capacidades más flexibles para construir grandes sistemas de software.
+
+En lenguajes como C# y Java, una de las herramientas principales en la caja de herramientas para crear componentes reutilizables son los genéricos, es decir, poder crear un componente que pueda funcionar con una variedad de tipos en lugar de uno solo. Esto permite a los usuarios consumir estos componentes y utilizar sus propios tipos.
+
+Para empezar, hagamos el "hola mundo" de los genéricos: la función de identidad. La función de identidad es una función que devolverá todo lo que se le pase. Puede pensar en esto de manera similar al comando echo.
+
+Sin genéricos, tendríamos que darle a la función de identidad un tipo específico:
+
+* * *
+function identity(arg: number): number {
+  return arg;
+}
+* * *
+
+O bien, podríamos describir la función de identidad usando cualquier tipo:
+
+MALA PRACTICA USAR ANY(YA QUE SERIA COMO USAR JS CLASICO)
+
+* * *
+function identity(arg: any): any {
+  return arg;
+}
+* * *
+
+Si bien el uso de any es ciertamente genérico, ya que hará que la función acepte todos y cada uno de los tipos para el tipo de argumento, en realidad estamos perdiendo la información sobre cuál era ese tipo cuando la función regresa. Si pasamos un número, la única información que tenemos es que se puede devolver cualquier tipo.
+
+En cambio, necesitamos una forma de capturar el tipo de argumento de tal manera que también podamos usarlo para indicar lo que se devuelve. Aquí, usaremos una variable de tipo, un tipo especial de variable que funciona con tipos en lugar de valores.
+
+* * *
+
+function identity<Type>(arg: Type): Type {
+  return arg;
+  }
+
+Ahora hemos agregado una variable de tipo Tipo a la función de identidad. Este tipo nos permite capturar el tipo que proporciona el usuario (por ejemplo, número), para que podamos usar esa información más adelante. Aquí, usamos Type nuevamente como el tipo de devolución. En la inspección, ahora podemos ver que se usa el mismo tipo para el argumento y el tipo de retorno. Esto nos permite traficar ese tipo de información en un lado de la función y fuera del otro.
+
+Decimos que esta versión de la función de identidad es genérica, ya que funciona en una variedad de tipos. A diferencia de usar any, también es tan preciso (es decir, no pierde ninguna información) como la primera función de identidad que usó números para el argumento y el tipo de retorno.
 
 
+* * *
 
+Ahora hemos agregado una variable de tipo Tipo a la función de identidad. Este tipo nos permite capturar el tipo que proporciona el usuario (por ejemplo, número), para que podamos usar esa información más adelante. Aquí, usamos Type nuevamente como el tipo de devolución. En la inspección, ahora podemos ver que se usa el mismo tipo para el argumento y el tipo de retorno. Esto nos permite traficar ese tipo de información en un lado de la función y fuera del otro.
+
+Decimos que esta versión de la función de identidad es genérica, ya que funciona en una variedad de tipos. A diferencia de usar any, también es tan preciso (es decir, no pierde ninguna información) como la primera función de identidad que usó números para el argumento y el tipo de retorno.
+
+Una vez que hemos escrito la función de identidad genérica, podemos llamarla de dos maneras. La primera forma es pasar todos los argumentos, incluido el argumento de tipo, a la función:
+
+
+* **
+ let output = identity<string>("myString");
+      
+let output: string
+* * *
+
+### Funciones Genéricas
+
+El tipo any permite cualquier cosa pero a la vez no permite utilizar el intelissense de typescript
+Me permite pasar cualquier tipo de dato y esto hace que el autocompletado de typescript me pueda ayudar y siempre va a servir para definir no solo los argumentos sino los retornos de las funciones q querramos que sean genericas.
+Permite la reutilización.
+Se puede utilizar interfaces que definan el tipo generico de la fn y esto determinara el tipo del argumento y el retorno de la fn, tdo estará condicionado.
+
+
+Funcion generica
+* * * 
+
+    function genericFn<T>(arg: T):T{
+        return arg
+    }
+
+
+* * *
 
 
 

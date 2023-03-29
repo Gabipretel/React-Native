@@ -8,4 +8,8 @@
         return a + b;
     };
     console.log(add(3, 2));
+    class Persona {
+        printBio() {
+        }
+    }
 })();
