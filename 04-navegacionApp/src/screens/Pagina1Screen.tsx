@@ -1,23 +1,57 @@
 // Navegando a otras pantallas.
-
-
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { StackScreenProps } from '@react-navigation/stack/lib/typescript/src/types'
+import { styles } from '../theme/appTheme'
 
-interface Props extends StackScreenProps<any,any>{}
+interface Props extends StackScreenProps<any, any> { }
 
-const Pagina1Screen = ({navigation}:Props) => {
+const Pagina1Screen = ({ navigation }: Props) => {
 
   // El clg muestras las props del StackNavigator
   // console.log(props)
   return (
-    <View>
-      <Text>pagina1Screen</Text>
-      <Button
-        title='Ir a la pag 2'
-        onPress={()=>navigation.navigate('Pagina2Screen') }      
-      />
+    <View style={styles.globalMargin}>
+
+      <Text style={styles.title}>pagina1Screen</Text>
+
+      <TouchableOpacity 
+      style={{
+        ...styles.btn,
+          backgroundColor:'red'
+        }} 
+      onPress={() => navigation.navigate('Pagina2Screen')}>
+          <Text style={styles.btnText}>Pag 2</Text>
+      </TouchableOpacity>
+   
+
+      <View style={{flexDirection:'row'}}>
+        <TouchableOpacity
+          style={{
+            ...styles.btn,
+              backgroundColor:'blue'
+            }}
+          onPress={() => navigation.navigate('Pagina4Screen', {
+            id: 1,
+            name: 'Gabi',
+            lastName: 'Pretel'
+          })}
+        >
+          <Text style={styles.btnText}>ir Pag 4 </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate('Pagina4Screen', {
+            id: 1,
+            name: 'Maria ',
+            lastName: 'Sasa'
+          })}
+        >
+          <Text  style={styles.btnText}> ir Pag 4 Maria. </Text>
+        </TouchableOpacity>
+      </View>
+
     </View>
   )
 }
