@@ -26,6 +26,24 @@ export const styles = StyleSheet.create({
         fontSize:30,
         textAlign:'center',
         marginBottom:30
+    },
+    avatar:{
+        marginTop:30,
+        width:150,
+        height:150,
+        borderRadius:100
+    },
+    avatarContainer:{
+        alignItems:'center',
+    
+    },
+    menuContainer:{
+        alignItems:'center',
+        marginVertical:30,
+    },
+    menuText:{
+        fontSize:20,
+        padding:10
     }
     
 })
