@@ -485,15 +485,108 @@ function App() {
 export default App;
 * * *
 
+### Como interactuar para que vaya a otra pagina o Screen??
+Con el evento onPress() que debe recibir navigation que viene de Stack Navigator y se debe extender de stackScreenProps 
+VER DEMO Pagina1Screen.
+Pasos: crear interface Props y extenderla de StackScreenProps <any,any>{}
+esto viene de react-navigation/stack
+Desestructurar {navigacion} es un objeto en las props y luego llamar navigation.navigate desde el evento OnPress en un buttom.
 
 
+Navigation.pop()--> lleva para atrás(pag anterior visitada)
+Navigation.popToTop()--> lleva a la pag inicial, el home.
+
+### Propiedades importantes del Stack.Navigator
+
+initialRouteName->Aplican Globalmente. Path inicial de la app(Screen inicial).
+ScreenOptions-> Tiene el headerShow y cardStyle, entre otras opciones q hay tanto en IOS y en android
 
 
+Enviar parametros esta en la pag4Screen.(Pasa del pag1 al 4 ahi se puede ver la lógica....)
+
+Forma 2-> empieza haciendo un type en el stackNavigator luego
+* * *
+const Stack = createStackNavigator<RootStackParams>();
+* * *
+en el stack para decirle el type q tiene q ser para las screens,
+luego esto en el screen
+->
+* * * 
+interface Props extends StackScreenProps<RootStackParams,'Pagina4Screen'>
+* * *
+
+# useNavigation (No esta presente en el py.)
+VER DEMO Pagina2Screen donde se usa la navegación pero desde el hook propio del
+react navigation llamado useNavigation().
+//  Este hook trae el objeto de la navegación.
+useNavigation es un gancho que da acceso al objeto de navegación. Es útil cuando no puede pasar el accesorio de navegación directamente al componente o no quiere pasarlo en el caso de un elemento secundario profundamente anidado.
+
+useNavigation() devuelve el accesorio de navegación de la pantalla en la que se encuentra.
 
 ### Drawer Navigation
+Instalaciones se necesitan las de la introduccion de la pag
+Sino no anda.
+
+Para usarlo la estructura básica es esta: 
+* * *
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Feed" component={Feed} />
+      <Drawer.Screen name="Article" component={Article} />
+    </Drawer.Navigator>
+  );
+}
 
 
-### BottomTab Navigation
+* * *
+* * *
+const DrawerNavigator = () => {
+    return (
+        <Drawer.Navigator
+            screenOptions={{
+                drawerPosition: 'left',
+                headerShown: true,
+            }}
+
+        >
+            <Drawer.Screen name="StackNavigator" options={{ title: 'Home' }} component={StackNavigator} />
+            <Drawer.Screen name="SettingsScreen" options={{ title: 'Settings' }} component={SettingsScreen} />
+        </Drawer.Navigator>
+    )
+}
+* * *
+Para pasar algunas propiedades usar screenOptions
+
+
+Para hacer un btn q despliegue el drawer usar la siguiente lógica: (Sobre todo puede ser asi para el proyecto ya que lleva 2 años)
+En versiones modernas de drawer, ya viene un menu lateral hamburguesa para desplegar las pantallas.
+* * *
+  useEffect(() => {
+      navigation.setOptions({
+        headerLeft: ()=><Button
+          title='Menu'
+          onPress={()=> navigation.toggleDrawer()}
+          />
+      })
+* * *
+Puede devolver un Touchable para modificarlo y poner un icono. Otra cosa el header puede ir a la derecha etc.
+
+
+### BottomTab Navigator
+(Es para IOS)
+Una simple barra de pestañas en la parte inferior de la pantalla que le permite cambiar entre diferentes rutas. Las rutas se inicializan de forma perezosa: sus componentes de pantalla no se montan hasta que se enfocan por primera vez.
+Importante: Los useEffect -> en ppio se cargan una sola vez que se ingresa a lo tabs
+imagino que al pasarle dependencias al [ ] deberían volver a renderizar, pero queda a
+revisión.
+
+
+
 
 ### MaterialTop Navigation 
+(Es para android.)
 

@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StackNavigator from './src/navigator/StackNavigator';
 import DrawerNavigator from './src/navigator/DrawerNavigator';
 import DrawerNavigatorPersonalizado from './src/navigator/DrawerNavigatorPersonalizado';
+import Tabs from './src/navigator/Tabs';
+import DrawerNavTabs from './src/navigator/DrawerNavTabs';
 
 
 
@@ -17,7 +19,9 @@ const App = () => {
     <NavigationContainer>
       {/* <DrawerNavigator /> */}
         {/* <StackNavigator /> */}
-      <DrawerNavigatorPersonalizado />
+      {/* <DrawerNavigatorPersonalizado /> */}
+      {/* <Tabs/> */}
+      <DrawerNavTabs />
     </NavigationContainer>
   )
 }
