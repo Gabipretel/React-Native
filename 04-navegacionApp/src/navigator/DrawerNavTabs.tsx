@@ -20,8 +20,9 @@ const DrawerNavTabs = () => {
             drawerContent={(props) => <MenuInterno {...props} />}
 
         >
-            <Drawer.Screen name="Tabs"  component={Tabs} />
-            <Drawer.Screen name="SettingsScreen"  component={SettingsScreen} />
+
+            <Drawer.Screen name="Tabs" component={Tabs} />
+            <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
         </Drawer.Navigator>
     )
 }
@@ -46,11 +47,11 @@ const MenuInterno = (props: DrawerContentComponentProps) => {
 
             {/* Opciones de Menu */}
             <View style={styles.menuContainer}>
-                <TouchableOpacity onPress={()=> props.navigation.navigate('Tabs')} >
+                <TouchableOpacity onPress={() => props.navigation.navigate('Tabs')} >
                     <Text style={styles.menuText}>Navegacion</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=> props.navigation.navigate('SettingsScreen')} >
+                <TouchableOpacity onPress={() => props.navigation.navigate('SettingsScreen')} >
                     <Text style={styles.menuText}>Settings</Text>
                 </TouchableOpacity>
 

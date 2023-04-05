@@ -1,5 +1,10 @@
 import { StyleSheet } from "react-native";
 
+export const colors={
+    turquoise: '#3cdbd3',
+    
+}
+
 export const styles = StyleSheet.create({
     globalMargin:{
         marginHorizontal:40,
@@ -42,6 +47,7 @@ export const styles = StyleSheet.create({
         marginVertical:30,
     },
     menuText:{
+        color:'#000',
         fontSize:20,
         padding:10
     }
