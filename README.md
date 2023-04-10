@@ -584,9 +584,19 @@ Importante: Los useEffect -> en ppio se cargan una sola vez que se ingresa a lo 
 imagino que al pasarle dependencias al [ ] deberían volver a renderizar, pero queda a
 revisión.
 
+### MaterialTabBottom Navigator
+Para hacer las instalaciones generales -> no olvidar el getting started
+(Es para android.)
 
+Una barra de pestañas temática de diseño de materiales en la parte inferior de la pantalla que le permite cambiar entre diferentes rutas con animación. Las rutas se inicializan de forma perezosa: sus componentes de pantalla no se montan hasta que se enfocan por primera vez.
+
+Esto envuelve el componente BottomNavigation de react-native-paper. Si configura el complemento de Babel, no incluirá toda la biblioteca de reactivos nativos en papel en su paquete.
 
 
 ### MaterialTop Navigation 
+
+
+Para hacer las instalaciones generales -> no olvidar el getting started
 (Es para android.)
 
+Una barra de pestañas temática de diseño de materiales en la parte superior de la pantalla que le permite cambiar entre diferentes rutas tocando las pestañas o deslizando horizontalmente. Las transiciones están animadas de forma predeterminada. Los componentes de pantalla para cada ruta se montan inmediatamente.
