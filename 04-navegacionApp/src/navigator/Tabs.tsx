@@ -99,15 +99,15 @@ const TabsIOS = () => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'ei-archive'
+              iconName = 'archive'
               break;
 
             case 'Tab2Screen':
-              iconName = 'ei-location'
+              iconName = 'archive'
               break;
 
             case 'StackNavigator':
-              iconName = 'ei-cart'
+              iconName = 'archive'
               break;
           }
           return <Icon name={iconName} size={10} color='#000' />

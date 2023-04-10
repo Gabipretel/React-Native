@@ -13,7 +13,7 @@ const Tab1Screen = () => {
   return (
     <View style={styles.globalMargin}>
       <Text style={{color:'red'}}>Tab1Screen</Text>
-      <Icon name="" size={50} color='#000'/>
+      <Icon name="archive" size={50} color='#000'/>
      
     </View>
   )
