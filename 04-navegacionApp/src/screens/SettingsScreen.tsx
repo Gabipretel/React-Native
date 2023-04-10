@@ -10,7 +10,7 @@ const SettingsScreen = () => {
       ...styles.globalMargin,
       marginTop: insets.top+20
       }}>
-      <Text style={styles.title}>SettingsScreen</Text>
+      <Text style={styles.title}>SettingsScreen en proceso</Text>
     </View>
   )
 }
