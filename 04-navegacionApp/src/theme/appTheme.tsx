@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const colors={
     turquoise: '#3cdbd3',
+    white:'#FFF'
     
 }
 
