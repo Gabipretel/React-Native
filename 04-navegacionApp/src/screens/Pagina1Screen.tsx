@@ -1,15 +1,17 @@
 // Navegando a otras pantallas.
 import { View, Text, Button, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
+import React, {useEffect } from 'react'
 // import { StackScreenProps } from '@react-navigation/stack/lib/typescript/src/types'
 import { styles } from '../theme/appTheme'
 import { DrawerScreenProps } from '@react-navigation/drawer'
+
 
 // interface Props extends StackScreenProps<any, any> { }
 interface Props extends DrawerScreenProps<any, any> { }
 
 const Pagina1Screen = ({ navigation }: Props) => {
 
+    
 
     // Pasar btn desplegable del drawer. ver para versiones viejas del drawer
     useEffect(() => {
@@ -20,7 +22,8 @@ const Pagina1Screen = ({ navigation }: Props) => {
           />
       })
     }, [])
-    
+
+
   // El clg muestras las props del StackNavigator
   // console.log(props)
   return (
@@ -50,7 +53,7 @@ const Pagina1Screen = ({ navigation }: Props) => {
             lastName: 'Pretel'
           })}
         >
-          <Text style={styles.btnText}>ir Pag 4 </Text>
+          <Text style={styles.btnText}>ir Pag 4  Gabi </Text>
         </TouchableOpacity>
 
         <TouchableOpacity

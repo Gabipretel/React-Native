@@ -9,6 +9,7 @@ export const colors={
 export const styles = StyleSheet.create({
     globalMargin:{
         marginHorizontal:40,
+
     },
     btn:{
         elevation:8,
@@ -29,6 +30,7 @@ export const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     title:{
+        color:'#000',
         fontSize:30,
         textAlign:'center',
         marginBottom:30

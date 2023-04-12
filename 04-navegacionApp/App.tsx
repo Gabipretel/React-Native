@@ -8,22 +8,34 @@ import DrawerNavigator from './src/navigator/DrawerNavigator';
 import DrawerNavigatorPersonalizado from './src/navigator/DrawerNavigatorPersonalizado';
 import TabsIOS from './src/navigator/Tabs';
 import DrawerNavTabs from './src/navigator/DrawerNavTabs';
+import { AuthProvider } from './src/context/AuthContext';
 
 
 
 
-const Stack= createNativeStackNavigator()
+const Stack = createNativeStackNavigator()
 
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <DrawerNavigator /> */}
+      <AppState>
+        {/* <DrawerNavigator /> */}
         {/* <StackNavigator /> */}
-      {/* <DrawerNavigatorPersonalizado /> */}
-      {/* <Tabs/> */}
-      <DrawerNavTabs />
+        {/* <DrawerNavigatorPersonalizado /> */}
+        {/* <Tabs/> */}
+        <DrawerNavTabs />
+      </AppState>
     </NavigationContainer>
   )
 }
+
+const AppState = ({ children }: { children: JSX.Element }) => {
+  return (
+    <AuthProvider>
+      {children}
+    </AuthProvider>
+  )
+}
+
 
 export default App

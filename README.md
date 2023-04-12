@@ -717,6 +717,31 @@ NO HACER ESTO:
 * * *
 
 ### API Context
+Es otro componente común y corriente que luego voy a agregar al árbol de componentes.
+
+1-> Debo definir como luce o q información voy a guardar en el store.
+ * * *
+  export interface AuthState {
+
+  }
+ * * *
+
+2-> Definir un Estado Inicial 
+* * *
+export const authInitialState: AuthState={
+  isLoggedIn:false
+}
+
+3-> Crear el contexto 
+* * *
+ export const AuthContex= createContext()
+ * * *
+El valor que conlleva es el que el contexto va a brindarle a los hijos.
+También se lo suele definir en una interfaz para tener su estructura.
+
+4-> Exponer el provedor de información(del Estado)
+
+
 
 React.CreateContext
 
@@ -778,3 +803,5 @@ Nota:
 Solo puedes suscribirte a un solo Context usando esta API. Si necesitas leer más de una, lee Consumir múltiples Context.
 
 Si estás utilizando la sintaxis experimental de campos de clase pública, puedes usar un campo de clase static para inicializar tu contextType.
+
+

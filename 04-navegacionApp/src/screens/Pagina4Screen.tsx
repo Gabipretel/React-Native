@@ -1,8 +1,9 @@
 import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect,useContext } from 'react'
 import { styles } from '../theme/appTheme'
 import { StackScreenProps } from '@react-navigation/stack'
 import { RootStackParams } from '../navigator/StackNavigator'
+import { AuthContext } from '../context/AuthContext'
 //FORMA 1 PARa traer info pasada por el navigate
 // DESCOMENTAR PARA FORMA 1.
 // interface RouterParams{
@@ -20,6 +21,7 @@ const Pagina4Screen = (props:Props) => {
   // console.log(props.route.params)
   
   const params= props.route.params 
+  const {changeUsername} = useContext(AuthContext)
   // DESCOMENTAR PARA FORMA 1
   // const params= props.route.params as RouterParams
   // console.log(params, 'viene de params..')
@@ -28,6 +30,11 @@ const Pagina4Screen = (props:Props) => {
     title: params.name
    })
   }, [])
+  
+  useEffect (()=>{
+    // changeUsername()
+    changeUsername(props.route.params.name)
+  },[])
   
 
   return (
