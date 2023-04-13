@@ -1,14 +1,24 @@
+import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../screens/HomeScreen';
+import DetailScreen from '../screens/DetailScreen';
 
-const Stack = createStackNavigator();
+const Navigation = () => {
 
-function MyStack() {
+  const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyle:{
+          backgroundColor:'#FFF'
+        }
+      }}
+    >
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="DetailScreen" component={DetailScreen} />
     </Stack.Navigator>
   );
 }
+
+export default Navigation
