@@ -1,31 +1,46 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, ActivityIndicator } from 'react-native'
+import React from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
-import {styles} from '../theme/appTheme'
-import movieDb from '../api/movieDB'
+import Carousel from 'react-native-snap-carousel';
+import { styles } from '../theme/appTheme'
+import useMovies from '../hooks/useMovies'
+import MoviePoster from '../components/MoviePoster'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 
 interface Props extends StackScreenProps<any, any> { }
 
-const HomeScreen = ({navigation}:Props) => {
+const HomeScreen = ({ navigation }: Props) => {
 
-  useEffect(() => {
-    movieDb.get('/now_playing')
-    .then(response =>{
-      console.log(response)
-    })
-  }, [])
-  
+ const {top}= useSafeAreaInsets()
+  const { moviesInCinema, isLoading } = useMovies()
+
+  // console.log(JSON.stringify(moviesInCinema,null,3))
+  if (isLoading) {
+    return (
+      <View style={styles.position}>
+        <ActivityIndicator color='blue' size={100} />
+      </View>
+    )
+  }
 
   return (
-    <View>
-      <Text style={styles.title}>HomeScreen</Text>
-
-      <TouchableOpacity onPress={()=>navigation.navigate('DetailScreen')} >
-        <Text style={styles.title}>Next</Text>
-      </TouchableOpacity>
-    </View>
+    // <View style={{marginTop:top+20}}>
+    //   < MoviePoster movie={moviesInCinema[0]} />
+    // </View>
+    <Carousel
+    data={moviesInCinema}
+    renderItem={() => < MoviePoster movie={moviesInCinema[0]} /> }
+    sliderWidth={550}
+    itemWidth={200}
+     />
   )
 }
 
 export default HomeScreen
+
+{/* <Text style={styles.title}>HomeScreen</Text>
+
+<TouchableOpacity onPress={() => navigation.navigate('DetailScreen')} >
+  <Text style={styles.title}>Next</Text>
+</TouchableOpacity> */}
