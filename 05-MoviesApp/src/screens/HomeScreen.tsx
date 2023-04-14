@@ -1,4 +1,4 @@
-import { View, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator, Dimensions } from 'react-native'
 import React from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import Carousel from 'react-native-snap-carousel';
@@ -9,6 +9,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 
 interface Props extends StackScreenProps<any, any> { }
+
+const {width: windowWidth} = Dimensions.get('window')
 
 const HomeScreen = ({ navigation }: Props) => {
 
@@ -30,8 +32,8 @@ const HomeScreen = ({ navigation }: Props) => {
     // </View>
     <Carousel
     data={moviesInCinema}
-    renderItem={() => < MoviePoster movie={moviesInCinema[0]} /> }
-    sliderWidth={550}
+    renderItem={ ({item}: any) => < MoviePoster movie={item} /> }
+    sliderWidth={windowWidth}
     itemWidth={200}
      />
   )
