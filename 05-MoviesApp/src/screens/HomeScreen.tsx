@@ -1,23 +1,19 @@
-import { View, ActivityIndicator, Dimensions } from 'react-native'
+import { View, ActivityIndicator, Dimensions,ScrollView } from 'react-native'
 import React from 'react'
-import { StackScreenProps } from '@react-navigation/stack'
-import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-new-snap-carousel'
 import { styles } from '../theme/appTheme'
 import useMovies from '../hooks/useMovies'
 import MoviePoster from '../components/MoviePoster'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import HorizontalSlider from '../components/HorizontalSlider'
 
+const { width: windowWidth } = Dimensions.get('window')
 
-interface Props extends StackScreenProps<any, any> { }
+const HomeScreen = () => {
 
-const {width: windowWidth} = Dimensions.get('window')
+  const { top } = useSafeAreaInsets()
+  const { nowPlaying,popular,topRated,upcoming,isLoading } = useMovies()
 
-const HomeScreen = ({ navigation }: Props) => {
-
- const {top}= useSafeAreaInsets()
-  const { moviesInCinema, isLoading } = useMovies()
-
-  // console.log(JSON.stringify(moviesInCinema,null,3))
   if (isLoading) {
     return (
       <View style={styles.position}>
@@ -27,22 +23,25 @@ const HomeScreen = ({ navigation }: Props) => {
   }
 
   return (
-    // <View style={{marginTop:top+20}}>
-    //   < MoviePoster movie={moviesInCinema[0]} />
-    // </View>
-    <Carousel
-    data={moviesInCinema}
-    renderItem={ ({item}: any) => < MoviePoster movie={item} /> }
-    sliderWidth={windowWidth}
-    itemWidth={200}
-     />
+    <ScrollView>
+      {/* Carousel Cinema Today */}
+      <View style={{ marginTop: top + 20 }}>
+        <Carousel
+          // layout={'tinder'} 
+          data={nowPlaying}
+          renderItem={({ item }: any) => < MoviePoster movie={item} />}
+          sliderWidth={windowWidth}
+          itemWidth={200}
+          inactiveSlideOpacity={0.9}
+        />
+      </View>
+
+      <HorizontalSlider title='Populares en Argentina' movies={popular} />
+      <HorizontalSlider title='Top valoradas' movies={topRated} />
+      <HorizontalSlider title='Proximamente' movies={upcoming} />
+
+    </ScrollView>
   )
 }
 
 export default HomeScreen
-
-{/* <Text style={styles.title}>HomeScreen</Text>
-
-<TouchableOpacity onPress={() => navigation.navigate('DetailScreen')} >
-  <Text style={styles.title}>Next</Text>
-</TouchableOpacity> */}

@@ -4,6 +4,13 @@ export const styles = StyleSheet.create({
   title: {
     color: '#000'
   },
+  subtitle:{
+    color:'#000',
+    fontSize:30,
+    fontWeight:'700',
+    marginVertical:20,
+    marginLeft:20
+  },
   position: {
     flex: 1,
     justifyContent: 'center',
@@ -30,5 +37,9 @@ export const styles = StyleSheet.create({
     height: 200,
     borderRadius: 18,
   },
+  containerPopularMovies:{
+    height:400,
+
+  }
 
 })
