@@ -2,16 +2,18 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image,
   Dimensions,
   ScrollView,
+  ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '../navigation/Navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useMovieDetails} from '../hooks/useMovieDetails';
+import MovieDetails from '../components/MovieDetails';
 
 const screenHeight = Dimensions.get('screen').height;
 
@@ -20,35 +22,30 @@ interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 const DetailScreen = ({navigation, route}: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path} `;
-  const {isLoading,cast,MovieFullDetails} = useMovieDetails(movie.id);
+  const {isLoading, cast, MovieFullDetails} = useMovieDetails(movie.id);
 
   return (
     <ScrollView>
-      <View style={styles.containerDetails}>
-        <Image source={{uri: uri}} style={styles.posterImgDetail} />
+      <View style={movieDetailsStyles.containerDetails}>
+        <Image source={{uri: uri}} style={movieDetailsStyles.posterImgDetail} />
       </View>
 
-      <View style={styles.subtitleText}>
-        <Text style={styles.text}>{movie.original_title}</Text>
-        <Text style={styles.title}>{movie.title}</Text>
+      {isLoading ? (
+        <ActivityIndicator size={35} color="grey" style={{marginTop: 30}} />
+      ) : (
+        <MovieDetails movieFullDetails={MovieFullDetails!} cast={cast} />
+      )}
 
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            marginBottom: 10,
-            marginTop: 10,
-          }}>
-          <Text style={styles.description}>{movie.vote_average}</Text>
-          <Icon
-            style={{marginHorizontal: 6}}
-            name="star"
-            size={20}
-            color="#900"
-          />
-        </View>
-
-        <Text style={styles.description}>{movie.overview}</Text>
+      <View
+        style={{
+          position: 'absolute',
+          elevation: 9,
+          top: 20,
+          left: 5,
+        }}>
+        <TouchableOpacity onPress={() => navigation.pop()}>
+          <Icon name="arrow-back-outline" size={40} style={{color:'#FFF'}} />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -56,7 +53,7 @@ const DetailScreen = ({navigation, route}: Props) => {
 
 export default DetailScreen;
 
-const styles = StyleSheet.create({
+export const movieDetailsStyles = StyleSheet.create({
   containerDetails: {
     width: '100%',
   },
