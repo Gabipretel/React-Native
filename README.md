@@ -808,3 +808,504 @@ Si estás utilizando la sintaxis experimental de campos de clase pública, puede
 REDUX-SAGA Implementación.
 
 
+### FlatList vs ScrollView
+
+ScrollView es un componente nativo de reacción que permite al usuario desplazarse por una lista de componentes. Es un componente de nivel superior que no representa ningún contenido visible, sino que delega la representación a uno de sus elementos secundarios. Generalmente se usa para mostrar una pequeña cantidad de contenido que no cambiará con frecuencia.
+
+### Conviene FLATLIST.
+FlatList también es un componente nativo de reacción que se usa para mostrar una lista de elementos. Es similar a ScrollView, pero es más eficiente porque usa una estructura de datos más eficiente en memoria para almacenar los elementos de la lista y solo muestra los elementos que están actualmente visibles en la pantalla.
+
+Además, FlatList tiene la capacidad de realizar un desplazamiento infinito, donde el usuario puede seguir desplazándose y se cargarán nuevos elementos a medida que se acercan al final de la lista. Generalmente se usa para mostrar una gran cantidad de elementos que pueden cambiar con frecuencia, como una lista de resultados de búsqueda.
+
+### Porque usarlo.
+Aunque FlatList es un componente React Native incorporado que sirve como un contenedor desplazable genérico, FlatList representa solo aquellos elementos que se muestran actualmente en la pantalla. El valor predeterminado suele ser de 10 elementos. Como resultado de esto, no tiene ningún impacto en el rendimiento de la aplicación. Por lo tanto, cuando se trata de la visualización de grandes listas o conjuntos de datos, es preferible utilizar el componente FlatList.
+
+### Cuando ScrollView
+ScrollView carga todos los datos que se mostrarán en la pantalla a la vez, y esto se hace inmediatamente después de cargar el componente. Como resultado, todo el contenido (lista de datos) se monta por completo.
+
+Ahora bien, si, por ejemplo, esta lista de datos contiene muchos elementos, esto provocará automáticamente problemas de rendimiento. Por lo tanto, no es preferible usar ScrollView si tiene cien o mil elementos para mostrar en la pantalla. Se usa cuando tiene menos elementos de datos en la lista de un tamaño limitado.
+
+El proyecto 05 tiene peticiones simultaneas, axios,ruteo con y sin hook, pase de datos y tipados.
+
+### Formik(Creación de forms) and Yup(validación de los mismos) para React-Native Paso a Paso
+
+Para que comprenda la creación sencilla de formularios en React Native, crearé un formulario sencillo con campos de entrada de nombre, correo electrónico y contraseña.
+En React Native, trabajar con los controles de entrada y la validación del formulario es un poco complicado. Aquí es donde entran Formik y Yup; Formik le permite crear formularios más rápido, mientras que Yup se encarga de la validación.
+
+
+Formik es una biblioteca liviana y poderosa que lo ayuda con las 3 partes más inquietantes de la creación de formularios en react-native. También ayuda a mantener las cosas organizadas creando, probando y refactorizando sus formularios.
+
+Yup es un generador de esquemas de JavaScript para el análisis y la validación de valores. Asigne un esquema, convierta un valor para que coincida, valide la forma de un valor existente o ambos.
+
+Sí, los esquemas son increíblemente potentes y admiten el modelado de validaciones complejas e interdependientes o transformaciones de valores.
+
+
+Manejo de envío de formularios
+
+Validación y mensajes de error
+
+Gestión de valores de formulario de estado de formulario
+
+Pasos:
+
+- Instalar paquetes Formik y Yup
+
+* * *
+yarn add formik yup
+
+* * *
+
+### Crear formulario en React Native con Formik
+
+Ahora, vamos a crear un formulario básico utilizando el componente Formik. Abra su archivo App.js e importe el paquete formik en la parte superior del archivo de la aplicación.
+
+* * *
+// App.js
+import React, { Component } from 'react';
+import { TextInput, Text, Button, Alert, View, StyleSheet } from 'react-native';
+import { Formik } from 'formik'
+
+export default class App extends Component {
+  render() {
+    const inputStyle = {
+      borderWidth: 1,
+      borderColor: '#4e4e4e',
+      padding: 12,
+      marginBottom: 5,
+    };
+    return (
+      <Formik
+        initialValues={{ 
+          name: '',
+          email: '', 
+          password: '' 
+        }}
+        onSubmit={values => Alert.alert(JSON.stringify(values))}
+       >
+        {({ values, handleChange, errors, setFieldTouched, touched, isValid, handleSubmit }) => (
+          <View style={styles.formContainer}>
+            <TextInput
+              value={values.name}
+              style={inputStyle}
+              onChangeText={handleChange('name')}
+              onBlur={() => setFieldTouched('name')}
+              placeholder="Name"
+            />
+            {touched.name && errors.name &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.name}</Text>
+            }            
+            <TextInput
+              value={values.email}
+              style={inputStyle}
+              onChangeText={handleChange('email')}
+              onBlur={() => setFieldTouched('email')}
+              placeholder="E-mail"
+            />
+            {touched.email && errors.email &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.email}</Text>
+            }
+            <TextInput
+              value={values.password}
+              style={inputStyle}
+              onChangeText={handleChange('password')}
+              placeholder="Password"
+              onBlur={() => setFieldTouched('password')}
+              secureTextEntry={true}
+            />
+            {touched.password && errors.password &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.password}</Text>
+            }
+            <Button
+              color="#3740FE"
+              title='Submit'
+              disabled={!isValid}
+              onPress={handleSubmit}
+            />
+          </View>
+        )}
+      </Formik>
+    );
+  }
+}
+const styles = StyleSheet.create({
+  formContainer: {
+    padding: 50 
+  }
+});
+console.disableYellowBox = true;
+
+* * *
+
+Formik controla el control de entradas con el evento handleChange().
+
+También mantuvimos el botón deshabilitado cuando los campos del formulario no son válidos.
+
+Aquí está el resultado del formulario React Native.
+
+Ya hemos instalado Yup ahora. En este paso, aprenderemos a validar los controles de entrada de formulario utilizando el paquete Yup.
+
+* * * 
+
+<Formik
+initialValues={{ 
+  name: '',
+  email: '', 
+  password: '' 
+}}
+onSubmit={values => Alert.alert(JSON.stringify(values))}
+validationSchema={yup.object().shape({
+  name: yup
+    .string()
+    .required('Please, provide your name!'),
+  email: yup
+    .string()
+    .email()
+    .required(),
+  password: yup
+    .string()
+    .min(4)
+    .max(10, 'Password should not excced 10 chars.')
+    .required(),
+})}
+>
+
+* * *
+
+Configurar la propiedad ValidationSchema en Formik es fácil. El esquema permite que los controles de entrada se validen rápidamente.
+
+Podemos validar rápidamente el control de entrada de correo electrónico, incluso puede configurar los mensajes personalizados con él.
+
+Validar y administrar varios tipos de campos de entrada también es fácil con Yup.
+
+Puede consultar todas las opciones de validación de formularios aquí.
+
+Aquí está el código final que hemos colocado en el archivo App.js.
+
+* * *
+
+// App.js
+
+import React, { Component } from 'react';
+import { TextInput, Text, Button, Alert, View, StyleSheet } from 'react-native';
+import * as yup from 'yup'
+import { Formik } from 'formik'
+
+export default class App extends Component {
+  render() {
+    const inputStyle = {
+      borderWidth: 1,
+      borderColor: '#4e4e4e',
+      padding: 12,
+      marginBottom: 5,
+    };
+    return (
+      <Formik
+        initialValues={{ 
+          name: '',
+          email: '', 
+          password: '' 
+        }}
+        onSubmit={values => Alert.alert(JSON.stringify(values))}
+        validationSchema={yup.object().shape({
+          name: yup
+            .string()
+            .required('Please, provide your name!'),
+          email: yup
+            .string()
+            .email()
+            .required(),
+          password: yup
+            .string()
+            .min(4)
+            .max(10, 'Password should not excced 10 chars.')
+            .required(),
+        })}
+       >
+        {({ values, handleChange, errors, setFieldTouched, touched, isValid, handleSubmit }) => (
+          <View style={styles.formContainer}>
+            <TextInput
+              value={values.name}
+              style={inputStyle}
+              onChangeText={handleChange('name')}
+              onBlur={() => setFieldTouched('name')}
+              placeholder="Name"
+            />
+            {touched.name && errors.name &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.name}</Text>
+            }            
+            <TextInput
+              value={values.email}
+              style={inputStyle}
+              onChangeText={handleChange('email')}
+              onBlur={() => setFieldTouched('email')}
+              placeholder="E-mail"
+            />
+            {touched.email && errors.email &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.email}</Text>
+            }
+            <TextInput
+              value={values.password}
+              style={inputStyle}
+              onChangeText={handleChange('password')}
+              placeholder="Password"
+              onBlur={() => setFieldTouched('password')}
+              secureTextEntry={true}
+            />
+            {touched.password && errors.password &&
+              <Text style={{ fontSize: 12, color: '#FF0D10' }}>{errors.password}</Text>
+            }
+            <Button
+              color="#3740FE"
+              title='Submit'
+              disabled={!isValid}
+              onPress={handleSubmit}
+            />
+          </View>
+        )}
+      </Formik>
+    );
+  }
+}
+const styles = StyleSheet.create({
+  formContainer: {
+    padding: 50 
+  }
+});
+console.disableYellowBox = true;
+* * *
+
+--- Demo 2---
+
+### Pasos
+1-Importar el hook useFormik from 'formik' al principio del archivo a utilizar.(Se utilizara para crear una instancia de Formik con todos los estados y ayudante(helpers) que se necesiten)
+
+2- El hook useFormik acepta como parametro un objeto de configuraciones. Estas se pueden usar para modificar y dar forma a su formulario según las necesidades.
+
+3-Se pasaran las siguientes propiedades en esta demo:
+
+a-InitialValues: Incluye los campos del formulario y sus valores iniciales.
+
+b-validationSchema: Un esquema Yup para validar los campos.
+
+c- onSubmit: Una función para ejecutar cuando se envía el formulario.
+
+Tanto Los valores iniciales como la función onSubmit son obligatorias.
+
+Como puede ver, establece el valor de la propiedad initialValues ​​en un objeto. Las claves de este objeto son los nombres de los campos del formulario. Sus valores son el valor inicial.
+
+* * *
+import React from 'react';
+import {Formik} from 'formik';
+import {Button, Text, TextInput, View} from 'react-native';
+
+const FormFormik = () => {
+  return (
+    <>
+      <Text>Registrate Ahora ! </Text>
+      <Formik
+        initialValues={{name: '', email: '', password: ''}}
+
+        onSubmit={values => console.log(values)}>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
+          <View>
+            <TextInput
+              placeholder="Name"
+              onChangeText={handleChange('name')}
+              onBlur={handleBlur('name')}
+              value={values.name}
+            />
+            <TextInput
+              placeholder="Email"
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+            />
+            <TextInput
+              placeholder="Password"
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              value={values.password}
+            />
+            <Button onPress={handleSubmit} title="Submit" />
+          </View>
+        )}
+      </Formik>
+    </>
+  );
+};
+export default FormFormik;
+
+  * * *
+
+En la función onSubmit, recibe el objeto de valores como parámetro. Aquí puede acceder a los valores y usarlos para guardarlos en la base de datos o enviarlos a un servidor. 
+
+Tener en cuenta que la función onSubmit solo se ejecuta una vez que se valida el formulario. Por lo tanto, no necesita realizar ninguna validación dentro de esta función
+
+Ahora, puede usar la variable formik para crear un formulario, vincular sus campos a los campos que definió en useFormik, vincular la validación y vincular el controlador de envío.
+
+formik incluye las siguientes propiedades entre otras:
+
+1-handleSubmit: la función de envío que debe llamarse cuando se envía el formulario. Esto generalmente se asigna al controlador de eventos onSubmit de elementos de formulario.
+
+2-errores: Un objeto que tiene los nombres de campo como propiedades y el valor de cada uno es el mensaje de error resultante de validar ese campo si hay algún error.
+
+3-touched: Un objeto que tiene los nombres de los campos como propiedades y el valor es un booleano que indica si el usuario ha interactuado con el campo o no.
+
+4-values: un objeto que tiene los nombres de campo como propiedades y el valor de cada uno es el valor actual de ese campo. Por lo general, se usa para establecer la propiedad de valor de los elementos de entrada.
+
+5-handleChange: una función que debe usarse como controlador del evento de cambio de elementos de entrada. Se pasa como el valor de la propiedad onChange de los elementos.
+
+6-handleBlur: una función que debe usarse como controlador del evento de desenfoque de los elementos de entrada. Se pasa como el valor de la propiedad onBlur de los elementos.
+
+
+### Agregando Yup a Formik.
+
+Agregar validaciones Yup y accesorios TextInput
+Agregamos algunos campos por ahora, así que establezcamos una lógica de validación para cada uno de ellos.
+
+Comience importando Yup en un archio externo para configurar el esquema.
+
+* * *
+import * as Yup from 'yup';
+* * *
+
+
+Luego definimos un esquema de validación para los campos.
+Se puede crear un archivo con el nombre validationSchema
+* * *
+const validationSchema = Yup.object().shape({
+name: Yup.string().required('Name is required').label('Name'),
+email: Yup.string()
+.email('Please enter valid email')
+.required('Email is required')
+.label('Email'),
+password: Yup.string()
+.matches(/\w*[a-z]\w*/, 'Password must have a small letter')
+.matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+.matches(/\d/, 'Password must have a number')
+.min(8, ({min}) => `Password must be at least ${min} characters`)
+.required('Password is required')
+.label('Password'),
+});
+
+* * *
+Luego este archivo lo importamos en el form de native y
+lo agregamos a Formik con una propiedad llamada
+validationSchema={validationSchema}
+
+Luego, mostraremos los mensajes de error usando la propiedad 'errores'. Por ahora, agreguemos un componente <Text> después de cada campo.
+* * *
+<TextInput
+placeholder="Name"
+onChangeText={handleChange('name')}
+onBlur={handleBlur('name')}
+value={values.name}
+/>
+<Text style={{color: 'red'}}>{errors.name}</Text>
+* * *
+
+Sin embargo, no queremos mostrar estos errores cada vez, solo cuando hay un error y si se toca el campo. Envolveremos nuestro componente de texto con algún código ES6 y solo lo renderizaremos si se cumplen las condiciones mencionadas anteriormente.
+
+* * *
+{errors.name && touched.name && (
+<Text style={{color: 'red'}}>{errors.name}</Text>
+)}
+* * *
+
+Ahora, puede notar que la contraseña no está oculta como esperábamos. Necesitamos pasar el accesorio secureTextEntry a TextInput para que eso suceda. También pasaremos algunos otros accesorios para que nuestro TextInput se comporte correctamente.
+
+El resultado final queda debajo. 
+* * *
+import React from 'react';
+import {Button, Text, TextInput, View} from 'react-native';
+import {Formik, Field} from 'formik';
+import * as Yup from 'yup';
+const validationSchema = Yup.object().shape({
+name: Yup.string().required('Name is required').label('Name'),
+email: Yup.string()
+.email('Please enter valid email')
+.required('Email is required')
+.label('Email'),
+password: Yup.string()
+.matches(/\w*[a-z]\w*/, 'Password must have a small letter')
+.matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+.matches(/\d/, 'Password must have a number')
+.min(8, ({min}) => `Password must be at least ${min} characters`)
+.required('Password is required')
+.label('Password'),
+});
+const SignUpForm = () => {
+return (
+<>
+<Text>Sign Up</Text>
+<Formik
+initialValues={{name: '', email: '', password: ''}}
+validationSchema={validationSchema}
+onSubmit={values => console.log(values)}>
+{({
+handleChange,
+handleBlur,
+handleSubmit,
+values,
+errors,
+touched,
+}) => (
+<View>
+<TextInput
+placeholder="Name"
+onChangeText={handleChange('name')}
+onBlur={handleBlur('name')}
+value={values.name}
+autoCorrect={false}
+/>
+{errors.name && touched.name && (
+<Text style={{color: 'red'}}>{errors.name}</Text>
+)}
+<TextInput
+placeholder="Email"
+onChangeText={handleChange('email')}
+onBlur={handleBlur('email')}
+autoCapitalize="none"
+autoCompleteType="email"
+autoCorrect={false}
+keyboardType="email-address"
+textContentType="emailAddress"
+value={values.email}
+/>
+{errors.email && touched.email && (
+<Text style={{color: 'red'}}>{errors.email}</Text>
+)}
+<TextInput
+placeholder="Password"
+onChangeText={handleChange('password')}
+onBlur={handleBlur('password')}
+autoCapitalize="none"
+secureTextEntry
+textContentType="password"
+value={values.password}
+/>
+{errors.password && touched.password && (
+<Text style={{color: 'red'}}>{errors.password}</Text>
+)}
+<Button onPress={handleSubmit} title="Submit" />
+</View>
+)}
+</Formik>
+</>
+);
+};
+export default SignUpForm;
+* * *
+
+
+
+
+
+
