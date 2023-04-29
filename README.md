@@ -1303,8 +1303,8 @@ value={values.password}
 };
 export default SignUpForm;
 * * *
-
-
+* * *
+# Preparar presentación Formik & Yup
 
 
 
