@@ -19,6 +19,6 @@ export const animationStyle = StyleSheet.create({
   colorBox: {
     width:150,
     height:150,
-    backgroundColor: '#829298',
+    backgroundColor: 'green',
   },
 });
