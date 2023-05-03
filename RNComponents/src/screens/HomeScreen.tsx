@@ -22,9 +22,9 @@ const menuItems: MenuItem[] = [
   },
   {
     id: '3',
-    name: 'Animation 3',
-    icon: 'logo-xbox',
-    components: 'AnimationScreen03',
+    name: 'SwitchScreen',
+    icon: 'toggle',
+    components: 'SwitchScreen',
   },
 ];
 
