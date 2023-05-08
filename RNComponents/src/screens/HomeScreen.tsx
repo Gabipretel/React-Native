@@ -21,8 +21,14 @@ const menuItems: MenuItem[] = [
   {
     id: '3',
     name: 'SwitchScreen',
-    icon: 'toggle',
+    icon: 'alert-circle',
     components: 'SwitchScreen',
+  },
+  {
+    id: '4',
+    name: 'Alerts',
+    icon: 'toggle',
+    components: 'AlertScreen',
   },
 ];
 
