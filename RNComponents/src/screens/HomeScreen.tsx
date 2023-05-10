@@ -30,6 +30,12 @@ const menuItems: MenuItem[] = [
     icon: 'toggle',
     components: 'AlertScreen',
   },
+  {
+    id: '5',
+    name: 'TextInputScreen',
+    icon: 'document-text',
+    components: 'TextInputScreen',
+  },
 ];
 
 const HomeScreen = () => {
