@@ -35,7 +35,14 @@ const menuItems: MenuItem[] = [
     name: 'TextInputScreen',
     icon: 'document-text',
     components: 'TextInputScreen',
-  },
+  }, 
+  {
+    id: '6',
+    name: 'Pull To Refresh',
+    icon: 'refresh',
+    components: 'PullToRefreshScreen',
+  }, 
+  
 ];
 
 const HomeScreen = () => {
