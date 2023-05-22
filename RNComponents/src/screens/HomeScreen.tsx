@@ -42,6 +42,12 @@ const menuItems: MenuItem[] = [
     icon: 'refresh',
     components: 'PullToRefreshScreen',
   }, 
+  {
+    id: '7',
+    name: 'MyTopModal',
+    icon: 'copy',
+    components: 'MyTopModalScreen',
+  },
   
 ];
 
