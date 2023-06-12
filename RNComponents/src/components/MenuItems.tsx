@@ -43,11 +43,17 @@ export const menuItems: MenuItem[] = [
       icon: 'copy',
       components: 'MyTopModalScreen',
     },
-     {
+    {
       id: '8',
       name: 'SectionList',
       icon: 'list',
       components: 'CustomSectionListScreen',
+    },
+    {
+      id: '9',
+      name: 'InfiniteScroll',
+      icon: 'download',
+      components: 'InfiniteScrollScreen',
     },
     
   ];

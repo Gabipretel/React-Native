@@ -1,9 +1,6 @@
 (()=>{
 
 //Clases ES6 en Typescript 
-
-
-
 class Car {
     modelo:string;
     puertas: number;
@@ -15,12 +12,8 @@ class Car {
         this.hp=hp;
     }
 }
-
-
 const ferrari = new Car('Enzo',4,500)
 // console.log(ferrari)
-
-
 class Mercedes extends Car {
     creador: string;
     premios:string[];

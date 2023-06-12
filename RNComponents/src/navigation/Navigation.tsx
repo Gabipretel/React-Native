@@ -10,6 +10,7 @@ import AlertScreen from '../screens/AlertScreen';
 import TextInputScreen from '../screens/TextInputScreen';
 import PullToRefreshScreen from '../screens/PullToRefreshScreen';
 import CustomSectionListScreen from '../screens/CustomSectionListScreen';
+import InfiniteScrollScreen from '../screens/InfiniteScrollScreen';
 // import MyTopModalScreen from '../screens/MyTopModalScreen';
 
 const Stack = createStackNavigator();
@@ -18,7 +19,7 @@ const Navigation = () => {
 
   return (
     <Stack.Navigator screenOptions={{
-       headerShown:false
+      headerShown:false
     }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="AnimationScreen01" component={AnimationScreen01} />
@@ -29,10 +30,10 @@ const Navigation = () => {
       <Stack.Screen name="TextInputScreen" component={TextInputScreen} />
       <Stack.Screen name="PullToRefreshScreen" component={PullToRefreshScreen} />
       <Stack.Screen name="CustomSectionListScreen" component={CustomSectionListScreen} />
-
+      <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen} />
     </Stack.Navigator>
   );
 };
 
-export default Navigation;
+export default Navigation;  
 
