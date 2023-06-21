@@ -2,12 +2,24 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigator from './src/navigator/Navigator';
+import { PermissionsProvider } from './src/context/PermissionsContext';
 const App = () => {
-  return (
+
+	const AppState = ({children}:{children: JSX.Element | JSX.Element []}) => {
+		return( 
+		<PermissionsProvider>
+			{children}
+		</PermissionsProvider>
+	)
+	}
+	
+    return (
     <NavigationContainer>
-      <Navigator/>
+		<AppState>
+            <Navigator/>
+		</AppState>
     </NavigationContainer>
-  );
+    );
 };
 
 export default App;
