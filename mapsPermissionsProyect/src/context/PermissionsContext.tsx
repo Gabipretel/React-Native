@@ -49,7 +49,7 @@ export const PermissionsProvider= ({children} : {children: JSX.Element | JSX.Ele
     }
     //Va a chequear el estado de los permisos para que el usuario pueda volver a usar la app. por si este los bloqueo o no.
     const checkLocationPermission = async () => {
-        let permissionStatus : PermissionStatus
+            let permissionStatus : PermissionStatus
         
         if(Platform.OS === 'ios'){
             permissionStatus = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)

@@ -37,7 +37,7 @@ const FormFormik = () => {
             )}
             <TextInput style={{borderWidth:1,borderRadius:8,color:'#000', marginBottom:10}}
               placeholder="Email"
-              onChangeText={handleChange('email')}
+              onChangeText={handleChange('email')} // useFields(...props)
               onBlur={handleBlur('email')}
               value={values.email}
               autoCorrect={false}
